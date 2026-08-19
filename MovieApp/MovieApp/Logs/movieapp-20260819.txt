@@ -1,0 +1,83 @@
+[2026-08-19 01:56:30 INF] [TraceId=] Executed DbCommand (176ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-19 01:56:30 INF] [TraceId=] Executed DbCommand (28ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-19 01:56:30 INF] [TraceId=] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-08-19 01:56:31 INF] [TraceId=] Now listening on: https://localhost:7035
+[2026-08-19 01:56:31 INF] [TraceId=] Now listening on: http://localhost:5211
+[2026-08-19 01:56:31 INF] [TraceId=] Application started. Press Ctrl+C to shut down.
+[2026-08-19 01:56:31 INF] [TraceId=] Hosting environment: Development
+[2026-08-19 01:56:31 INF] [TraceId=] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp
+[2026-08-19 01:56:46 WRN] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+[2026-08-19 01:56:47 INF] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-19 01:56:47 WRN] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-19 01:56:47 WRN] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-19 01:56:47 INF] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] Executed DbCommand (36ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-19 01:56:47 INF] [TraceId=203a8bb473f89e21d9ce48454c43bbcd] HTTP GET /movies responded 200 in 3473.5628 ms
+[2026-08-19 02:01:01 INF] [TraceId=] Executed DbCommand (118ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-19 02:01:01 INF] [TraceId=] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-19 02:01:01 INF] [TraceId=] Executed DbCommand (32ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-08-19 02:01:02 INF] [TraceId=] Now listening on: https://localhost:7035
+[2026-08-19 02:01:02 INF] [TraceId=] Now listening on: http://localhost:5211
+[2026-08-19 02:01:03 INF] [TraceId=] Application started. Press Ctrl+C to shut down.
+[2026-08-19 02:01:03 INF] [TraceId=] Hosting environment: Development
+[2026-08-19 02:01:03 INF] [TraceId=] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp
+[2026-08-19 02:01:12 WRN] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+[2026-08-19 02:01:13 INF] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-19 02:01:13 WRN] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-19 02:01:13 WRN] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-19 02:01:13 INF] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] Executed DbCommand (26ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId], [m0].[c]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease], (
+        SELECT AVG(CAST([r].[Score] AS float))
+        FROM [Ratings] AS [r]
+        WHERE [m].[Id] = [r].[MovieId]) AS [c]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-19 02:01:13 INF] [TraceId=4055ae4b18614bec5d81ed2fd42930a1] HTTP GET /movies responded 200 in 932.8969 ms

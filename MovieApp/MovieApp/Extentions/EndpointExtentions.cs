@@ -1,5 +1,7 @@
-﻿using MovieApp.API.Endpoints.Genre;
+﻿using MovieApp.API.Endpoints.Authentication;
+using MovieApp.API.Endpoints.Genre;
 using MovieApp.API.Endpoints.Movie;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Extentions
 {
@@ -8,17 +10,34 @@ namespace MovieApp.API.Extentions
         public static WebApplication MapEndpoint(
             this WebApplication app)
         {
-            app.MapCreateMovie();
-            app.MapDeleteMovie();
-            app.MapUpdateMovie();
-            app.MapGetAllGenres();
-            app.MapGetByIdMovie();
-            app.MapRateMovie();
+            var adminGroup = app.MapGroup("/api")
+                .RequireAuthorization(policy => 
+                policy.RequireRole(Roles.Admin));
 
-            app.MapCreatGenre();
-            app.MapDeleteGenre();
-            app.MapGetAllGenres();
-            app.MapUpdateGenre();
+            var userGroup = app.MapGroup("/api")
+                .RequireAuthorization();
+
+            //Admin
+            adminGroup.MapCreateMovie();
+            adminGroup.MapDeleteMovie();
+            adminGroup.MapUpdateMovie();
+
+            adminGroup.MapCreatGenre();
+            adminGroup.MapDeleteGenre();
+            adminGroup.MapGetAllGenres();
+            adminGroup.MapUpdateGenre();
+
+            //User
+           userGroup.MapRateMovie();
+             //Public
+            app.MapGetByIdMovie();
+            app.MapGetAllMovies();
+
+
+            //Authentication
+            app.MapRegister();
+            app.MapLogin();
+
             return app;
         }
     }

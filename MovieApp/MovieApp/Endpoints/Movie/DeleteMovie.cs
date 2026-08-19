@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using MovieApp.Appliccation.Movies.DeleteMovie;
+using MovieApp.Application.Movies.DeleteMovie;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Endpoints.Movie
 {

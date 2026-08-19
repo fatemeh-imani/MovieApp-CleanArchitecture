@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MovieApp.API.Request.Movie;
-using MovieApp.Appliccation.Movies.RateMovie;
+using MovieApp.Application.Movies.RateMovie;
 
 namespace MovieApp.API.Endpoints.Movie
 {

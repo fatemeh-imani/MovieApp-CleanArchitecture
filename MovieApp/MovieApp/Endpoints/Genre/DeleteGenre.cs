@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using MovieApp.Appliccation.Genres.DeleteGenre;
+using MovieApp.Application.Genres.DeleteGenre;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Endpoints.Genre
 {

@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using MovieApp.Appliccation.Genres.GetAllGenre;
+using MovieApp.Application.Genres.GetAllGenre;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Endpoints.Genre
 {
@@ -16,7 +17,7 @@ namespace MovieApp.API.Endpoints.Genre
                      new GetAllGenreQuery(),cancellationToken);
 
                 return result.IsSuccess
-                ?Results.Ok()
+                ?Results.Ok(result.Value)
                 :Results.BadRequest(result.Error);
             });
             return app;

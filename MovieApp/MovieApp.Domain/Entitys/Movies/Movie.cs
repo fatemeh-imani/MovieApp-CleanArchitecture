@@ -42,12 +42,15 @@ namespace MovieApp.Domain.Entitys.Movies
         }
 
 
-        public Result AddRating(Guid userId, int score)
+        public Result<Rating> AddOrUpdateRating(Guid userId, int score)
         {
-            if (_ratings.Any(r => r.UserId == userId))
+            var existingRating =
+                _ratings.FirstOrDefault(r => r.UserId == userId);
+
+            if (existingRating is not null )
             {
-                return Result.Failure(
-                    MovieErrors.AlreadyExistsRated);
+                 existingRating.Update(score);                
+               return Result<Rating>.Success(existingRating);
             }
 
             var rating = Rating.Create(
@@ -55,7 +58,7 @@ namespace MovieApp.Domain.Entitys.Movies
 
             _ratings.Add(rating);
 
-            return Result.Success();
+            return Result<Rating>.Success(rating);
         }
         public Result Update(
             string title, int yearOfRelease

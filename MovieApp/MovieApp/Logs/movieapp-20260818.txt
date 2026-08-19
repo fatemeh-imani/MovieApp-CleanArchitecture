@@ -1,0 +1,368 @@
+2026-08-18 16:49:25.670 +03:30 [INF] Executed DbCommand (58ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-18 16:49:25.782 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-18 16:49:25.814 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-18 16:49:26.323 +03:30 [INF] Now listening on: https://localhost:7035
+2026-08-18 16:49:26.326 +03:30 [INF] Now listening on: http://localhost:5211
+2026-08-18 16:49:26.388 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-18 16:49:26.390 +03:30 [INF] Hosting environment: Development
+2026-08-18 16:49:26.392 +03:30 [INF] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp
+2026-08-18 16:50:03.131 +03:30 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-08-18 16:50:03.423 +03:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[Title], [m].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM [Movies] AS [m]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m].[Id] = [s].[MoviesId]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+ORDER BY [m].[Id], [s].[GenresId], [s].[MoviesId]
+2026-08-18 16:50:03.452 +03:30 [INF] HTTP GET /movies responded 200 in 479.3618 ms
+[2026-08-18 17:05:22 INF] [TraceId=] Executed DbCommand (58ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 17:05:22 INF] [TraceId=] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 17:05:22 INF] [TraceId=] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-08-18 17:05:23 INF] [TraceId=] Now listening on: https://localhost:7035
+[2026-08-18 17:05:23 INF] [TraceId=] Now listening on: http://localhost:5211
+[2026-08-18 17:05:23 INF] [TraceId=] Application started. Press Ctrl+C to shut down.
+[2026-08-18 17:05:23 INF] [TraceId=] Hosting environment: Development
+[2026-08-18 17:05:23 INF] [TraceId=] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp
+[2026-08-18 17:05:40 WRN] [TraceId=26bd9aa06ababada0cf4515549279c3e] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+[2026-08-18 17:05:40 INF] [TraceId=26bd9aa06ababada0cf4515549279c3e] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[Title], [m].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM [Movies] AS [m]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m].[Id] = [s].[MoviesId]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+ORDER BY [m].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 17:05:40 INF] [TraceId=26bd9aa06ababada0cf4515549279c3e] HTTP GET /movies responded 200 in 525.6814 ms
+[2026-08-18 22:58:24 INF] [TraceId=] Executed DbCommand (129ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 22:58:24 INF] [TraceId=] Executed DbCommand (10ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 22:58:24 INF] [TraceId=] Executed DbCommand (6ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-08-18 22:58:25 FTL] [TraceId=] Application startup exception
+System.InvalidOperationException: Body was inferred but the method does not allow inferred body parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+filterMovie         | Body (Inferred)
+sender              | Services (Inferred)
+
+
+Did you mean to register the "Body (Inferred)" parameter(s) as a Service or apply the [FromServices] or [FromBody] attribute?
+
+
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArguments(ParameterInfo[] parameters, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArgumentsAndInferMetadata(MethodInfo methodInfo, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.InferMetadata(MethodInfo methodInfo, RequestDelegateFactoryOptions options)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.CreateRouteEndpointBuilder(RouteEntry entry, RoutePattern groupPrefix, IReadOnlyList`1 groupConventions, IReadOnlyList`1 groupFinallyConventions)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.CreateEndpointsUnsynchronized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.EnsureEndpointsInitialized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.EnsureInitialized()
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationPolicyCache..ctor(EndpointDataSource dataSource)
+   at InvokeStub_AuthorizationPolicyCache..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at InvokeStub_AuthorizationMiddlewareInternal..ctor(Object, Object, Object, Object, Object)
+   at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+   at System.Reflection.ConstructorInvoker.Invoke(Span`1 arguments)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+[2026-08-18 22:58:25 ERR] [TraceId=] Hosting failed to start
+System.InvalidOperationException: Body was inferred but the method does not allow inferred body parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+filterMovie         | Body (Inferred)
+sender              | Services (Inferred)
+
+
+Did you mean to register the "Body (Inferred)" parameter(s) as a Service or apply the [FromServices] or [FromBody] attribute?
+
+
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArguments(ParameterInfo[] parameters, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArgumentsAndInferMetadata(MethodInfo methodInfo, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.InferMetadata(MethodInfo methodInfo, RequestDelegateFactoryOptions options)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.CreateRouteEndpointBuilder(RouteEntry entry, RoutePattern groupPrefix, IReadOnlyList`1 groupConventions, IReadOnlyList`1 groupFinallyConventions)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.CreateEndpointsUnsynchronized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.EnsureEndpointsInitialized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.EnsureInitialized()
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationPolicyCache..ctor(EndpointDataSource dataSource)
+   at InvokeStub_AuthorizationPolicyCache..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at InvokeStub_AuthorizationMiddlewareInternal..ctor(Object, Object, Object, Object, Object)
+   at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+   at System.Reflection.ConstructorInvoker.Invoke(Span`1 arguments)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2026-08-18 23:04:11 INF] [TraceId=] Executed DbCommand (64ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 23:04:11 INF] [TraceId=] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-08-18 23:04:11 INF] [TraceId=] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-08-18 23:04:11 INF] [TraceId=] Now listening on: https://localhost:7035
+[2026-08-18 23:04:11 INF] [TraceId=] Now listening on: http://localhost:5211
+[2026-08-18 23:04:11 INF] [TraceId=] Application started. Press Ctrl+C to shut down.
+[2026-08-18 23:04:11 INF] [TraceId=] Hosting environment: Development
+[2026-08-18 23:04:11 INF] [TraceId=] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp
+[2026-08-18 23:04:34 WRN] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+[2026-08-18 23:04:35 INF] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] Executed DbCommand (23ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+    SELECT 1
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+    WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+[2026-08-18 23:04:35 WRN] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-18 23:04:35 WRN] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-18 23:04:35 INF] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] Executed DbCommand (19ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+        SELECT 1
+        FROM [GenreMovie] AS [g]
+        INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+        WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g2].[Id], [g2].[Title], [g1].[GenresId], [g1].[MoviesId]
+    FROM [GenreMovie] AS [g1]
+    INNER JOIN [Genres] AS [g2] ON [g1].[GenresId] = [g2].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:04:35 INF] [TraceId=a7a71450ee714e62f4c0dd4cf0926296] HTTP GET /movies responded 200 in 3299.8261 ms
+[2026-08-18 23:05:17 INF] [TraceId=5f7d7f11fdb49fab887ade6248aade66] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-18 23:05:17 WRN] [TraceId=5f7d7f11fdb49fab887ade6248aade66] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-18 23:05:17 WRN] [TraceId=5f7d7f11fdb49fab887ade6248aade66] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-18 23:05:17 INF] [TraceId=5f7d7f11fdb49fab887ade6248aade66] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:05:17 INF] [TraceId=5f7d7f11fdb49fab887ade6248aade66] HTTP GET /movies responded 200 in 206.0328 ms
+[2026-08-18 23:05:42 INF] [TraceId=91bb91430d0e9c7dcb814b9b889cf8ad] Executed DbCommand (11ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+    SELECT 1
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+    WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+[2026-08-18 23:05:42 INF] [TraceId=91bb91430d0e9c7dcb814b9b889cf8ad] Executed DbCommand (19ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+        SELECT 1
+        FROM [GenreMovie] AS [g]
+        INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+        WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g2].[Id], [g2].[Title], [g1].[GenresId], [g1].[MoviesId]
+    FROM [GenreMovie] AS [g1]
+    INNER JOIN [Genres] AS [g2] ON [g1].[GenresId] = [g2].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:05:42 INF] [TraceId=91bb91430d0e9c7dcb814b9b889cf8ad] HTTP GET /movies responded 200 in 71.7846 ms
+[2026-08-18 23:06:03 INF] [TraceId=ff819290f23721bed63d09e6cbf51267] Executed DbCommand (35ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+    SELECT 1
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+    WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+[2026-08-18 23:06:03 INF] [TraceId=ff819290f23721bed63d09e6cbf51267] Executed DbCommand (24ms) [Parameters=[@__request_Filter_Search_0_contains='?' (Size = 200), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit) AND ([m].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\' OR EXISTS (
+        SELECT 1
+        FROM [GenreMovie] AS [g]
+        INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+        WHERE [m].[Id] = [g].[MoviesId] AND [g0].[Title] LIKE @__request_Filter_Search_0_contains ESCAPE N'\'))
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g2].[Id], [g2].[Title], [g1].[GenresId], [g1].[MoviesId]
+    FROM [GenreMovie] AS [g1]
+    INNER JOIN [Genres] AS [g2] ON [g1].[GenresId] = [g2].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:06:03 INF] [TraceId=ff819290f23721bed63d09e6cbf51267] HTTP GET /movies responded 200 in 106.2714 ms
+[2026-08-18 23:06:28 INF] [TraceId=dde1c9165a2dfc43572198b45f1d0021] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-18 23:06:28 INF] [TraceId=dde1c9165a2dfc43572198b45f1d0021] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY [m].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Title], [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:06:28 INF] [TraceId=dde1c9165a2dfc43572198b45f1d0021] HTTP GET /movies responded 200 in 157.9015 ms
+[2026-08-18 23:07:01 INF] [TraceId=4a3722bf0066720ce6ec80b2c58a8f17] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-18 23:07:01 INF] [TraceId=4a3722bf0066720ce6ec80b2c58a8f17] Executed DbCommand (46ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:07:01 INF] [TraceId=4a3722bf0066720ce6ec80b2c58a8f17] HTTP GET /movies responded 200 in 86.9370 ms
+[2026-08-18 23:07:23 INF] [TraceId=4b7af752b25396f5c95b928db3e9301f] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-18 23:07:23 INF] [TraceId=4b7af752b25396f5c95b928db3e9301f] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:07:23 INF] [TraceId=4b7af752b25396f5c95b928db3e9301f] HTTP GET /movies responded 200 in 41.1194 ms
+[2026-08-18 23:07:45 INF] [TraceId=0bb036ebd4cb8f0bdffb9c53942e3bf3] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Movies] AS [m]
+WHERE [m].[IsDelete] = CAST(0 AS bit)
+[2026-08-18 23:07:45 INF] [TraceId=0bb036ebd4cb8f0bdffb9c53942e3bf3] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m0].[Id], [m0].[Title], [m0].[YearOfRelease], [s].[Id], [s].[Title], [s].[GenresId], [s].[MoviesId]
+FROM (
+    SELECT [m].[Id], [m].[Title], [m].[YearOfRelease]
+    FROM [Movies] AS [m]
+    WHERE [m].[IsDelete] = CAST(0 AS bit)
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [m0]
+LEFT JOIN (
+    SELECT [g0].[Id], [g0].[Title], [g].[GenresId], [g].[MoviesId]
+    FROM [GenreMovie] AS [g]
+    INNER JOIN [Genres] AS [g0] ON [g].[GenresId] = [g0].[Id]
+) AS [s] ON [m0].[Id] = [s].[MoviesId]
+ORDER BY [m0].[Id], [s].[GenresId], [s].[MoviesId]
+[2026-08-18 23:07:45 INF] [TraceId=0bb036ebd4cb8f0bdffb9c53942e3bf3] HTTP GET /movies responded 200 in 52.7605 ms

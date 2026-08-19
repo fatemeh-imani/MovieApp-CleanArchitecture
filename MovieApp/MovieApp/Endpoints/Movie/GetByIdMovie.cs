@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MovieApp.Appliccation.Movies.GetByIdMovie;
+using MovieApp.Application.Movies.GetByIdMovie;
 
 namespace MovieApp.API.Endpoints.Movie
 {

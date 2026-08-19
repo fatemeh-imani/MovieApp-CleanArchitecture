@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.API.Request.Genre;
-using MovieApp.Appliccation.Genres.UpdateGenre;
+using MovieApp.Application.Genres.UpdateGenre;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Endpoints.Genre
 {

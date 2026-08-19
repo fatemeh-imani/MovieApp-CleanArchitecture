@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MovieApp.Appliccation.Movies.CreateMovie;
+using MovieApp.Application.Movies.CreateMovie;
 
 namespace MovieApp.API.Endpoints.Movie
 {

@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.API.Request.Movie;
-using MovieApp.Appliccation.Movies.UpdateMovie;
+using MovieApp.Application.Movies.UpdateMovie;
+using MovieApp.Infrastructure.Authentication.Role;
 
 namespace MovieApp.API.Endpoints.Movie
 {
@@ -12,7 +13,7 @@ namespace MovieApp.API.Endpoints.Movie
         {
             app.MapPut("/movies/{movieId}", async (
               Guid movieId,
-              [FromBody] UpdateGenreRequest request,
+              [FromBody] UpdateMovieRequest request,
               ISender sender,
               CancellationToken cancellationToken) => 
             {
