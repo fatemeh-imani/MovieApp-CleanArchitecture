@@ -4,6 +4,7 @@ using MoviApp.SharedKernel.Result;
 using MovieApp.Application.CommonResponse;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Movies;
+using MovieApp.Application.Movies.GetAllMovie;
 
 namespace MovieApp.Application.Movies.GetByIdMovie
 {
@@ -39,6 +40,8 @@ namespace MovieApp.Application.Movies.GetByIdMovie
                        g.Title)).ToList(),
                     movie.Ratings
                     .Select(r=>(double?)r.Score).Average()));
+
+           
         }
     }
 }

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+   
+    <PackageReference Include="FluentAssertions" />
+   
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+   
+    <PackageReference Include="MockQueryable.Moq" />
+   
+    <PackageReference Include="Moq" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoviApp.SharedKernel\MovieApp.SharedKernel.csproj" />
+    <ProjectReference Include="..\MovieApp.Application\MovieApp.Application.csproj" />
+    <ProjectReference Include="..\MovieApp.Domain\MovieApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Athentication\Login\" />
+    <Folder Include="Athentication\Register\" />
+    <Folder Include="Domain\" />
+  </ItemGroup>
+
+</Project>

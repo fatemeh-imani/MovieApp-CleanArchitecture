@@ -1,9 +1,7 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MoviApp.SharedKernel.Result;
-
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Movies;
 
@@ -30,7 +28,9 @@ namespace MovieApp.Application.Movies.DeleteMovie
             }
 
             movie.Delete();
+
             await _context.SaveChangesAsync(cancellationToken);
+
             _logger.LogInformation(
               "Movie {MovieId} deleted successfully.",
                 request.MovieId);
