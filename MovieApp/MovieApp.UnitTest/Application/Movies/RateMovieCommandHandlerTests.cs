@@ -11,7 +11,7 @@ using MovieApp.Domain.Entitys.Ratings;
 
 namespace MovieApp.UnitTests.Application.Movies
 {
-    public class RateMovieCommandHandlerTest
+    public class RateMovieCommandHandlerTests
     {
         [Fact]
         public async Task Handler_Should_ReturnFailure_When_Movie_NotFound()

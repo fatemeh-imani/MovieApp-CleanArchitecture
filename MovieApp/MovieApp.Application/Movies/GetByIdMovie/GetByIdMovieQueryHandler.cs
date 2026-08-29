@@ -17,31 +17,29 @@ namespace MovieApp.Application.Movies.GetByIdMovie
         public async Task<Result<MovieResponse>> Handle(
             GetByIdMovieQuery request, CancellationToken cancellationToken)
         {
-               var movie = await _context.Movies
-                .AsNoTracking()
-                .FirstOrDefaultAsync(
-                x=> x.Id == request.MovieId,
-                cancellationToken);
-               
-            if(movie is null)
+            var movie = await _context.Movies
+               .AsNoTracking()
+               .Where(x => x.Id == request.MovieId)
+               .Select(x => new MovieResponse(
+                          x.Id,
+                          x.Title,
+                          x.YearOfRelease,
+                          x.Genres
+                      .Select(g => new GenreResponse(
+                          g.Id,
+                          g.Title)).ToList(),
+                          x.Ratings
+                            .Select(r => (double?)r.Score)
+                                   .Average()))
+               .FirstOrDefaultAsync(cancellationToken);
+
+            if (movie is null)
             {
                 return Result<MovieResponse>.Failure(
-                       MovieErrors.NotFound(request.MovieId));
+                    MovieErrors.NotFound(request.MovieId));
             }
-            //Projection
-            return Result<MovieResponse>.Success(
-                new MovieResponse(
-                    movie.Id,
-                    movie.Title,
-                    movie.YearOfRelease,
-                    movie.Genres
-                    .Select(g => new GenreResponse(
-                       g.Id,
-                       g.Title)).ToList(),
-                    movie.Ratings
-                    .Select(r=>(double?)r.Score).Average()));
 
-           
+            return Result<MovieResponse>.Success(movie);
         }
     }
 }

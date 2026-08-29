@@ -38,11 +38,13 @@ namespace MovieApp.Application.Movies.RateMovie
                 return Result.Failure(result.Error);
             }
 
-            _context.Ratings.Add(result.Value!);
+            if(result.Value!.IsNew)
+            { 
+                _context.Ratings.Add(result.Value!.Rating); 
+            }
 
            
-            await _context.SaveChangesAsync(
-                cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return Result.Success();
         }

@@ -26,7 +26,7 @@ namespace MovieApp.Application.Movies.DeleteMovie
                 return Result.Failure(
                     MovieErrors.NotFound(request.MovieId));
             }
-
+            //HasQueryFilter
             movie.Delete();
 
             await _context.SaveChangesAsync(cancellationToken);

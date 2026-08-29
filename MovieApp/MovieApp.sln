@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTest", "Integrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.UnitTests", "MovieApp.UnitTest\MovieApp.UnitTests.csproj", "{532B3447-038B-43FD-AE82-6533FDD79334}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.IntegrationTests", "MovieApp.IntegrationTests\MovieApp.IntegrationTests.csproj", "{025AE183-FCD9-43FE-B225-E356598B5BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{532B3447-038B-43FD-AE82-6533FDD79334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532B3447-038B-43FD-AE82-6533FDD79334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532B3447-038B-43FD-AE82-6533FDD79334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{025AE183-FCD9-43FE-B225-E356598B5BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{025AE183-FCD9-43FE-B225-E356598B5BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{025AE183-FCD9-43FE-B225-E356598B5BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{025AE183-FCD9-43FE-B225-E356598B5BA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{F08641A6-6C88-4E92-A667-DBFC5AD0C2F0} = {8ABE71D1-D52A-4C2C-B600-D0CEB41AA2F0}
 		{A9FBDCAD-CD40-45A1-BC95-70D44E25459A} = {8ABE71D1-D52A-4C2C-B600-D0CEB41AA2F0}
 		{532B3447-038B-43FD-AE82-6533FDD79334} = {F08641A6-6C88-4E92-A667-DBFC5AD0C2F0}
+		{025AE183-FCD9-43FE-B225-E356598B5BA8} = {A9FBDCAD-CD40-45A1-BC95-70D44E25459A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB95533E-83FB-4F8F-BACA-FA1C275DAA30}

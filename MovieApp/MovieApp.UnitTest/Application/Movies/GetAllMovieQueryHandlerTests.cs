@@ -11,7 +11,7 @@ using MovieApp.Domain.Entitys.Movies;
 
 namespace MovieApp.UnitTests.Application.Movies
 {
-    public class GetAllMovieQueryHandlerTest
+    public class GetAllMovieQueryHandlerTests
     {
 
         [Fact]

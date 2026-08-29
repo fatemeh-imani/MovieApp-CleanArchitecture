@@ -9,7 +9,7 @@ using MovieApp.Domain.Entitys.Movies;
 
 namespace MovieApp.UnitTests.Application.Movies
 {
-    public class GetByIdMovieQueryHAndlerTest
+    public class GetByIdMovieQueryHAndlerTests
     {
         [Fact]
         public async Task Handle_Should_ReturnFailure_When_Mvoie_NotFound()
@@ -35,7 +35,7 @@ namespace MovieApp.UnitTests.Application.Movies
             //Assert
 
             result.IsFailure.Should().BeTrue();
-            result.Error.Should().Be(MovieErrors.NotFound);
+            result.Error.Should().Be(MovieErrors.NotFound(movieId));
 
         }
         [Fact]
@@ -67,14 +67,14 @@ namespace MovieApp.UnitTests.Application.Movies
             result.Value.Title.Should().Be(movie.Title);
 
             result.Value.Genres.Should().ContainSingle();
-            result.Value.Genres[0].Title.Should().Be(movie.Title);
+            result.Value.Genres[0].Title.Should().Be(genre.Title);
 
         }
         [Fact]
         public async Task Handle_Should_ProjectMovies_WithAverageRating()
         {
             //Arrang
-            var genre = Genre.Create("Comedi");
+            var genre = Genre.Create("Comedy");
 
             var movie = Movie.Create("SpiderMan", 2001, [genre]);
             movie.AddOrUpdateRating(Guid.NewGuid(), 8);
@@ -98,7 +98,7 @@ namespace MovieApp.UnitTests.Application.Movies
             //Assert
             result.IsSuccess.Should().BeTrue();
 
-            result.Value.Title.Should().Be("SpidrMan");
+            result.Value.Title.Should().Be("SpiderMan");
             result.Value.AverageRating.Should().Be(9);
         }
 
