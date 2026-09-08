@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using MovieApp.Application.Movies.CreateMovie;
 using MovieApp.Domain.Entitys.Genres;
 using MovieApp.Domain.Entitys.Movies;
+using MovieApp.Domain.Entitys.Movies.Event;
 using MovieApp.IntegrationTests.InfraStructure;
 
 namespace MovieApp.IntegrationTests.Application
@@ -72,6 +73,27 @@ namespace MovieApp.IntegrationTests.Application
             //Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(MovieErrors.GenreNotFound);
+        }
+
+        [Fact]
+        public void Create_Should_Raise_MovieCreatedDomainEvent()
+        {
+            // Arrange
+            var genre = Genre.Create("Drama");
+
+            // Act
+            var movie = Movie.Create(
+                "Batman",
+                1998,
+                [genre]);
+
+            // Assert
+            movie.DomainEvents.Should().ContainSingle();
+
+            movie.DomainEvents
+                .Single()
+                .Should()
+                .BeOfType<MovieCreatedDomainEvent>();
         }
     }
 }

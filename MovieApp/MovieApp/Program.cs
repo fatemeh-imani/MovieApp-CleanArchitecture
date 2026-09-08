@@ -24,7 +24,10 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-await app.Services.SeedInfrastructureAsync();
+if (!app.Environment.IsEnvironment("Testing"))
+{
+    await app.Services.SeedInfrastructureAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -41,3 +44,6 @@ app.MapEndpoint();
 
 
 app.Run();
+public partial class Program
+{
+}

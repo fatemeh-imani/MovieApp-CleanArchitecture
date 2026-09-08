@@ -1,6 +1,7 @@
 ﻿using MoviApp.SharedKernel.Entitys;
 using MoviApp.SharedKernel.Result;
 using MovieApp.Domain.Entitys.Genres;
+using MovieApp.Domain.Entitys.Movies.Event;
 using MovieApp.Domain.Entitys.Ratings;
 
 
@@ -38,6 +39,9 @@ namespace MovieApp.Domain.Entitys.Movies
                 Guid.NewGuid(),title, yearOfRelease);
 
           movie._genres.AddRange(genres);
+
+            movie.Raise(new MovieCreatedDomainEvent(movie.Id));
+
             return movie;
         }
 

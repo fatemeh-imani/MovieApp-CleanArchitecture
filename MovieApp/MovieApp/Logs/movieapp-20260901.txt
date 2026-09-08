@@ -1,0 +1,18 @@
+[2026-09-01 01:10:19 WRN] [TraceId=] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+[2026-09-01 01:10:21 INF] [TraceId=] Executed DbCommand (154ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-09-01 01:10:21 INF] [TraceId=] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+[2026-09-01 01:10:21 INF] [TraceId=] Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+[2026-09-01 01:10:22 INF] [TraceId=] Now listening on: https://localhost:7035
+[2026-09-01 01:10:22 INF] [TraceId=] Now listening on: http://localhost:5211
+[2026-09-01 01:10:22 INF] [TraceId=] Application started. Press Ctrl+C to shut down.
+[2026-09-01 01:10:22 INF] [TraceId=] Hosting environment: Development
+[2026-09-01 01:10:22 INF] [TraceId=] Content root path: F:\d\CleanArt\MovieApp\MovieApp\MovieApp

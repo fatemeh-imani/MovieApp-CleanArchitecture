@@ -20,7 +20,7 @@ namespace MovieApp.API.Endpoints.Movie
                     cansellationToken);
                 return result.IsSuccess
                 ? Results.Ok()
-                : Results.BadRequest(result.Error);
+                : Results.NotFound(result.Error);
             });
             return app;
         }

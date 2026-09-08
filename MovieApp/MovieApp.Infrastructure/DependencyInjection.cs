@@ -9,6 +9,8 @@ using MovieApp.Application.Abstractions.Context;
 using MovieApp.Infrastructure.Authentication;
 using MovieApp.Infrastructure.Authentication.Identity;
 using MovieApp.Infrastructure.Persistence;
+using MovieApp.Infrastructure.BackgroundJobs;
+using Quartz;
 using System.Text;
 
 
@@ -20,11 +22,42 @@ namespace MovieApp.Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddSingleton<ConvertDomainEventsToOutboxMessagesInterceptor>();
+
+            services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlServer(
-           configuration.GetConnectionString("MovieCleanConnection"));
+                    configuration.GetConnectionString("MovieCleanConnection"));
 
+                options.AddInterceptors(
+                    sp.GetRequiredService<
+                        ConvertDomainEventsToOutboxMessagesInterceptor>());
+            });
+
+            services.AddQuartz(configurator =>
+            {
+                var jobKey = new JobKey(nameof(ProcessOutboxMessagesJob));
+
+                configurator.AddJob<ProcessOutboxMessagesJob>(options =>
+                {
+                    options.WithIdentity(jobKey);
+                });
+
+                configurator.AddTrigger(options =>
+                {
+                    options.ForJob(jobKey)
+                        .WithSimpleSchedule(schedule =>
+                        {
+                            schedule
+                                .WithIntervalInSeconds(10)
+                                .RepeatForever();
+                        });
+                });
+            });
+
+            services.AddQuartzHostedService(options =>
+            {
+                options.WaitForJobsToComplete = true;
             });
 
             services.Configure<JwtOptions>(
@@ -51,7 +84,7 @@ namespace MovieApp.Infrastructure
                   };
     });
            
-  services.AddIdentityCore<ApplicationUser>()
+           services.AddIdentityCore<ApplicationUser>()
               .AddRoles<IdentityRole<Guid>>()
               .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthorization();

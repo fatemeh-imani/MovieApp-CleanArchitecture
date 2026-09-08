@@ -2,14 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+	  <PreserveCompilationContext>true</PreserveCompilationContext>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
 
     <PackageReference Include="FluentAssertions" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
 	  <PackageReference Include="Moq" />
@@ -23,6 +27,7 @@
     <ProjectReference Include="..\MovieApp.Application\MovieApp.Application.csproj" />
     <ProjectReference Include="..\MovieApp.Domain\MovieApp.Domain.csproj" />
     <ProjectReference Include="..\MovieApp.Infrastructure\MovieApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\MovieApp\MovieApp.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
