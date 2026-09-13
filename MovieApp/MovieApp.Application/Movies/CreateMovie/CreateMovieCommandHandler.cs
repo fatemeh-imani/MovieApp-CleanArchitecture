@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Movies;
-using System;
+
 
 namespace MovieApp.Application.Movies.CreateMovie
 {

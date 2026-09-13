@@ -17,7 +17,7 @@ public sealed class ProcessOutboxMessagesJob(
         IJobExecutionContext context)
     {
         var messages = await dbContext
-            .Set<OutboxMessage>()
+             .OutboxMessages
             .Where(x => x.ProcessedOn == null)
             .OrderBy(x => x.OccurredOn)
             .Take(20)

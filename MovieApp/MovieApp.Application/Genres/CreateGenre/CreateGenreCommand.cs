@@ -1,7 +1,7 @@
 ﻿
 
 using MediatR;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 
 namespace MovieApp.Application.Genres.CreateGenre
 {

@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions;
 using MovieApp.Application.Abstractions.Login;
 using MovieApp.Application.Authentication.Abstractions;

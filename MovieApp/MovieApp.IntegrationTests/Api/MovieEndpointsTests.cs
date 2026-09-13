@@ -1,13 +1,15 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MovieApp.Application.Authentication.Abstractions;
 using MovieApp.Application.CommonResponse;
+using MovieApp.Application.Movies.GetAllMovie;
 using MovieApp.Domain.Entitys.Genres;
 using MovieApp.Domain.Entitys.Movies;
 using MovieApp.Infrastructure.Persistence;
 using MovieApp.IntegrationTests.Infrastructure;
-using MovieApp.IntegrationTests.InfraStructure;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace MovieApp.IntegrationTests.Api
@@ -43,27 +45,26 @@ namespace MovieApp.IntegrationTests.Api
 
             //Act
 
-            var response = await _client.GetAsync("/api/movies");
+            var response = await _client.GetAsync("/movies");
 
             // Assert
             response.StatusCode
                 .Should().Be(HttpStatusCode.OK);
 
-            var movies =
+            var result =
                 await response.Content
-                    .ReadFromJsonAsync<List<MovieResponse>>();
+                    .ReadFromJsonAsync<PageResultMovie<MovieResponse>>();
 
-            movies.Should().NotBeNull();
+            result.Items.Should().NotBeNull();
 
-            movies!.Should().ContainSingle();
+            result.Items!.Should().ContainSingle();
 
-            var result = movies.Single();
+            var movieResult = result.Items.Single();
+            movieResult.Title.Should().Be("Bateman");
 
-           result.Title.Should().Be("Bateman");
+            movieResult.YearOfRelease.Should().Be(1998);
 
-           result.YearOfRelease.Should().Be(1998);
-
-            result.Genres.Should().ContainSingle("Drama");
+            movieResult.Genres.Should().ContainSingle("Drama");
         }
        
         [Fact]
@@ -79,13 +80,29 @@ namespace MovieApp.IntegrationTests.Api
 
             context.Genres.Add(genre);
             await context.SaveChangesAsync();
+            var identityService =
+                  scope.ServiceProvider
+                  .GetRequiredService<IIdentityService>();
+
+            var loginResult =
+                await identityService.LoginAsync(
+                    "admin@movieapp.com",
+                    "Admin123!",
+                    CancellationToken.None);
+
+            loginResult.IsSuccess.Should().BeTrue();
+
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    loginResult.Value);
 
             var reques = new
             {
-                title = "Bateman",
+                title = "Inception",
                 yearOfRelease = 1998,
 
-                genres = new[]
+                genreIds = new[]
                {
                    genre.Id
                }
@@ -100,16 +117,17 @@ namespace MovieApp.IntegrationTests.Api
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var createdMovie = await response.Content
-                .ReadFromJsonAsync<MovieResponse>();
+            var createdMovie = await context.Movies
+                .Include(x => x.Genres)
+                .SingleOrDefaultAsync(x => x.Title == "Inception");
 
             createdMovie.Should().NotBeNull();
 
-            createdMovie!.Title.Should().Be("Bateman");
+            createdMovie!.YearOfRelease.Should().Be(1998);
+            createdMovie.Genres.Should().ContainSingle();
+            createdMovie.Genres.First().Title.Should().Be("Drama");
 
-            createdMovie.YearOfRelease.Should().Be(1998);
 
-            createdMovie.Genres.Should().ContainSingle("Drama");
         }
 
         [Fact]
@@ -121,17 +139,35 @@ namespace MovieApp.IntegrationTests.Api
             {
                 title = "Bateman",
                 yearOfRelease = 1998,
-                genres = new[] { Guid.NewGuid() }
+                genreIds = new[] { Guid.NewGuid() }
             };
+            using var scope =
+                  factory.Services.CreateScope();
+
+            var identityService =
+                scope.ServiceProvider
+                    .GetRequiredService<IIdentityService>();
+
+            var loginResult =
+                await identityService.LoginAsync(
+                    "admin@movieapp.com",
+                    "Admin123!",
+                    CancellationToken.None);
+
+            loginResult.IsSuccess.Should().BeTrue();
+
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    loginResult.Value);
 
             //Act
 
             var responce = await _client.PostAsJsonAsync(
                 "/api/movies",request);
-
+           
             //Assert
-
-            responce.StatusCode.Should().Be(HttpStatusCode.NotFound);
+          responce.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
        [Fact]
@@ -161,6 +197,22 @@ namespace MovieApp.IntegrationTests.Api
             context.Movies.Add(movie);
 
             await context.SaveChangesAsync();
+            var identityService =
+                  scope.ServiceProvider
+                        .GetRequiredService<IIdentityService>();
+
+            var loginResult =
+                await identityService.LoginAsync(
+                    "admin@movieapp.com",
+                    "Admin123!",
+                    CancellationToken.None);
+
+            loginResult.IsSuccess.Should().BeTrue();
+
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    loginResult.Value);
 
             var request = new
             {
@@ -176,7 +228,7 @@ namespace MovieApp.IntegrationTests.Api
 
             var response =
                 await _client.PutAsJsonAsync(
-                    $"/movies/{movie.Id}",
+                    $"/api/movies/{movie.Id}",
                     request);
 
             // Assert
@@ -185,8 +237,15 @@ namespace MovieApp.IntegrationTests.Api
                 .Should()
                 .Be(HttpStatusCode.OK);
 
+            using var assertScope =
+               factory.Services.CreateScope();
+
+            var assertContext =
+                assertScope.ServiceProvider
+                    .GetRequiredService<ApplicationDbContext>();
+
             var movieFromDatabase =
-                await context.Movies
+                await assertContext.Movies
                     .Include(x => x.Genres)
                     .FirstOrDefaultAsync(
                         x => x.Id == movie.Id);
@@ -221,7 +280,7 @@ namespace MovieApp.IntegrationTests.Api
             var genre1 = Genre.Create("Drama");
            
             var movie = Movie.Create(
-                "Bateman",
+               "The Dark Knight",
                 1998,
                 [genre1]);
 
@@ -232,22 +291,44 @@ namespace MovieApp.IntegrationTests.Api
 
             await context.SaveChangesAsync();
 
+            var identityService =
+                      scope.ServiceProvider
+                       .GetRequiredService<IIdentityService>();
+
+            var loginResult =
+                await identityService.LoginAsync(
+                    "admin@movieapp.com",
+                    "Admin123!",
+                    CancellationToken.None);
+
+            loginResult.IsSuccess.Should().BeTrue();
+
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    loginResult.Value);
+
             //Act
             var responce =
-               await _client.DeleteAsync(
-                    $"/movies/{movie.Id}");
+                  await _client.DeleteAsync(
+                       $"/api/movies/{movie.Id}");
 
             //Assert
 
-           responce.StatusCode.Should().Be(HttpStatusCode.OK);
+            using var assertScope =
+                       factory.Services.CreateScope();
 
-            var movieFromDatabase = await context.Movies
+            var assertContext =
+                assertScope.ServiceProvider
+                    .GetRequiredService<ApplicationDbContext>();
+
+            var movieFromDatabase = await assertContext.Movies
                 .FirstOrDefaultAsync(x => x.Id ==  movie.Id);
 
             movieFromDatabase.Should().BeNull();
 
             var deletedMovie = 
-                 await context.Movies
+                 await assertContext.Movies
                  .IgnoreQueryFilters()
                  .FirstOrDefaultAsync(x => x.Id == movie.Id);
 
@@ -263,10 +344,30 @@ namespace MovieApp.IntegrationTests.Api
 
             var movieId = Guid.NewGuid();
 
+            using var scope =
+               factory.Services.CreateScope();
+
+            var identityService =
+                    scope.ServiceProvider
+                     .GetRequiredService<IIdentityService>();
+
+            var loginResult =
+                await identityService.LoginAsync(
+                    "admin@movieapp.com",
+                    "Admin123!",
+                    CancellationToken.None);
+
+            loginResult.IsSuccess.Should().BeTrue();
+
+            _client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    loginResult.Value);
+
             //Act
 
             var response = await _client.DeleteAsync(
-                $"/movies/{movieId}");
+                $"/api/movies/{movieId}");
 
             //Assert
 

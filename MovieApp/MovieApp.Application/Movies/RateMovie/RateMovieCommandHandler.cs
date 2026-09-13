@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Authentication.Abstractions;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Movies;

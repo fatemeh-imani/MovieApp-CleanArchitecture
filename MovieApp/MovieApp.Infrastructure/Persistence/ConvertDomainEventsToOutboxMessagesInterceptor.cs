@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using MoviApp.SharedKernel.Entitys;
+using MovieApp.SharedKernel.Entitys;
 using MovieApp.Infrastructure.Persistence.Entites;
 using Newtonsoft.Json;
 

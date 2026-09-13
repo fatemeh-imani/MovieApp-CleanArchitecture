@@ -1,6 +1,6 @@
 ﻿
 
-using MoviApp.SharedKernel.Errors;
+using MovieApp.SharedKernel.Errors;
 
 namespace MovieApp.Domain.Entitys.Genres
 {

@@ -1,6 +1,6 @@
 ﻿
 using FluentAssertions;
-using MoviApp.SharedKernel.Entitys;
+using MovieApp.SharedKernel.Entitys;
 using MovieApp.AechitectureTests.Architecture;
 using NetArchTest.Rules;
 

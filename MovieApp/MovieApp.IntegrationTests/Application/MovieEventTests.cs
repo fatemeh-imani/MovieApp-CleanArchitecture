@@ -1,24 +1,23 @@
 ﻿using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MovieApp.Domain.Entitys.Genres;
 using MovieApp.Domain.Entitys.Movies;
 using MovieApp.Infrastructure.Persistence;
-using MovieApp.IntegrationTests.InfraStructure;
+using MovieApp.IntegrationTests.Infrastructure;
+
 
 namespace MovieApp.IntegrationTests.Application;
 
-public class MovieEventTests
+public class MovieEventTests(
+      CustomWebApplicationFactory factory)
+        : IClassFixture<CustomWebApplicationFactory>
 {
     [Fact]
     public async Task Should_Publish_MovieCreatedDomainEvent_After_SaveChanges()
     {
         // Arrange
-        var serviceProvider =
-            TestServiceProviderFactory.Create();
-
         using var scope =
-            serviceProvider.CreateScope();
+             factory.Services.CreateScope();
 
         var context =
             scope.ServiceProvider

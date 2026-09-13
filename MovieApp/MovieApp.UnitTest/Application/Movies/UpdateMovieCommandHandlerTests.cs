@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using MockQueryable.Moq;
 using Moq;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Application.Movies.UpdateMovie;
 using MovieApp.Domain.Entitys.Genres;

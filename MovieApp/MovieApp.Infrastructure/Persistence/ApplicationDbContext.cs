@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MoviApp.SharedKernel.Entitys;
+using MovieApp.SharedKernel.Entitys;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Genres;
 using MovieApp.Domain.Entitys.Movies;

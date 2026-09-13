@@ -1,6 +1,6 @@
 ﻿
 
-namespace MoviApp.SharedKernel.Errors
+namespace MovieApp.SharedKernel.Errors
 {
     public enum ErrorType
     {

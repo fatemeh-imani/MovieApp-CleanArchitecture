@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions;
 using MovieApp.Application.Authentication.Abstractions;
 using MovieApp.Infrastructure.Authentication.Role;

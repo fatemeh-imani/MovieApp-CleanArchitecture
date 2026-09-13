@@ -1,5 +1,5 @@
 ﻿
-using MoviApp.SharedKernel.Entitys;
+using MovieApp.SharedKernel.Entitys;
 
 namespace MovieApp.Infrastructure.Persistence.Entites
 {

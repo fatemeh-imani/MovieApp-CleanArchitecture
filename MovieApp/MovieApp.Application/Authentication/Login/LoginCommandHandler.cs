@@ -1,6 +1,6 @@
 ﻿
 using MediatR;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Authentication.Abstractions;
 
 namespace MovieApp.Application.Abstractions.Login

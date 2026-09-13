@@ -2,7 +2,7 @@
 using FluentAssertions;
 using MockQueryable.Moq;
 using Moq;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Application.Genres.GetAllGenre;
 using MovieApp.Application.Movies.GetAllMovie;

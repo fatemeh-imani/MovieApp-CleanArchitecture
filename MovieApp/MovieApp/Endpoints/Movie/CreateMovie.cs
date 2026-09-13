@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Application.Movies.CreateMovie;
+using MovieApp.SharedKernel.Errors;
 
 namespace MovieApp.API.Endpoints.Movie
 {
@@ -19,8 +20,16 @@ namespace MovieApp.API.Endpoints.Movie
                         command, cancellationToken);
 
                     return result.IsSuccess
-                    ? Results.Ok()
-                    : Results.BadRequest(result.Error);
+     ? Results.Ok()
+     : result.Error.Type switch
+     {
+         ErrorType.NotFound => Results.NotFound(result.Error),
+         ErrorType.Conflict => Results.Conflict(result.Error),
+         ErrorType.Validation => Results.BadRequest(result.Error),
+         ErrorType.Unauthorized => Results.Unauthorized(),
+         ErrorType.Forbidden => Results.Forbid(),
+         _ => Results.StatusCode(500)
+     };
                 });
             return app;
                 

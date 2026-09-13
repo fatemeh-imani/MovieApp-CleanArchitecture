@@ -1,6 +1,7 @@
-﻿
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
+using MovieApp.SharedKernel.Errors;
+using MovieApp.SharedKernel.Results;
 
 namespace MovieApp.Application.Behaviors
 {
@@ -8,6 +9,7 @@ namespace MovieApp.Application.Behaviors
         IEnumerable<IValidator<TRequest>> _validators)
         : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull
+        where TResponse : Result
     {
         public async Task<TResponse> Handle(
             TRequest request,
@@ -21,18 +23,22 @@ namespace MovieApp.Application.Behaviors
 
             var context = new ValidationContext<TRequest>(request);
 
-            var failures = await Task.WhenAll(
+            var validationResults = await Task.WhenAll(
                 _validators.Select(
                     x => x.ValidateAsync(context,cancellationToken)));
               
-            var errors = failures
-                .SelectMany(x => x.Errors)
-                .Where(x =>x is not null)
+            var errors = validationResults
+                .SelectMany(error => error.Errors)
+                .Where(error => error is not null)
+                .Select(error => Error.Validation(
+                   error.ErrorCode,
+                   error.ErrorMessage,
+                   ErrorType.Validation))
                 .ToList();
 
             if(errors.Count != 0)
             {
-                throw new ValidationException(errors);
+               return (TResponse)(object)ValidationResult.Failure(errors);
             }
 
             return await next();

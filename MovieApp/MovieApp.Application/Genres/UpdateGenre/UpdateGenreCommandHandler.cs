@@ -1,7 +1,7 @@
 ﻿
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Application.Genres.DeleteGenre;
 using MovieApp.Domain.Entitys.Genres;

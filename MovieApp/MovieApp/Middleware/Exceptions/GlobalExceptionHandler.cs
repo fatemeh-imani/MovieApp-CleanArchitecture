@@ -41,7 +41,18 @@ namespace MovieApp.API.Exceptions
                       exception,
                     "An unhandled exception occurred.");
 
-            return false;
+            httpContext.Response.StatusCode =
+     StatusCodes.Status500InternalServerError;
+
+            await httpContext.Response.WriteAsJsonAsync(
+                new
+                {
+                    exception = exception.Message,
+                    stackTrace = exception.StackTrace
+                },
+                cancellationToken);
+
+            return true;
         }
     }
 }

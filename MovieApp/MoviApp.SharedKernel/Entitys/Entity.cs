@@ -1,6 +1,6 @@
 ﻿using MovieApp.SharedKernel.Event;
 
-namespace MoviApp.SharedKernel.Entitys
+namespace MovieApp.SharedKernel.Entitys
 {
     public  abstract class Entity
     {

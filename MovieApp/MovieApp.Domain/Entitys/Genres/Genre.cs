@@ -1,6 +1,6 @@
 ﻿
-using MoviApp.SharedKernel.Entitys;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Entitys;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Domain.Entitys.Movies;
 
 namespace MovieApp.Domain.Entitys.Genres

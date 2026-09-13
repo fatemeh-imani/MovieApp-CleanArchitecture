@@ -1,6 +1,6 @@
 ﻿
 
-namespace MoviApp.SharedKernel.Errors
+namespace MovieApp.SharedKernel.Errors
 {
     public sealed record Error
     {
@@ -12,7 +12,7 @@ namespace MoviApp.SharedKernel.Errors
         {
             Code = code;
             Message = message;
-            type = type;
+            Type = type;
         }
         public static readonly Error None = new(
             string.Empty, string.Empty, ErrorType.Failure);

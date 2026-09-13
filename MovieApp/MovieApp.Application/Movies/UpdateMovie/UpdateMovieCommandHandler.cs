@@ -3,7 +3,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 
 using MovieApp.Application.Abstractions.Context;
 using MovieApp.Domain.Entitys.Genres;

@@ -1,13 +1,13 @@
-﻿using MoviApp.SharedKernel.Errors;
+﻿using MovieApp.SharedKernel.Errors;
 
 
-namespace MoviApp.SharedKernel.Result
+namespace MovieApp.SharedKernel.Results
 {
     public class Result<T> : Result
     {
         public T? Value { get;}
 
-        private Result(T? value, bool isSuccess, Error error) 
+        protected Result(T? value, bool isSuccess, Error error) 
             : base(isSuccess, error)
         {
             Value = value;

@@ -1,7 +1,7 @@
 ﻿
 
 using MediatR;
-using MoviApp.SharedKernel.Result;
+using MovieApp.SharedKernel.Results;
 using MovieApp.Application.CommonResponse;
 
 namespace MovieApp.Application.Movies.GetAllMovie

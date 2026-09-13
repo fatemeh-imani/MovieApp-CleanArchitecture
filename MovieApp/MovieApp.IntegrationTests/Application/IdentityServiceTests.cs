@@ -7,40 +7,33 @@ using MovieApp.Application.Authentication.Abstractions;
 using MovieApp.Infrastructure.Authentication.Identity;
 using MovieApp.Infrastructure.Authentication.Role;
 using MovieApp.Infrastructure.Persistence;
+using MovieApp.IntegrationTests.Infrastructure;
 using MovieApp.IntegrationTests.InfraStructure;
 
 namespace MovieApp.IntegrationTests.Application
 {
-    public class IdentityServiceTests
+    public class IdentityServiceTests(
+      CustomWebApplicationFactory factory)
+      : IClassFixture<CustomWebApplicationFactory>
     {
         [Fact]
         public async Task RegisterAsync_Should_Create_User_When_Data_IsValid()
         {
 
             // Arrange
-         
-            var serviceProvider =
-                TestServiceProviderFactory.Create();
 
             using var scope =
-                  serviceProvider.CreateScope();
+                 factory.Services.CreateScope();
 
             var context =
                 scope.ServiceProvider
                     .GetRequiredService<ApplicationDbContext>();
 
-            var roleManager =
-                serviceProvider
-                    .GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-
-            await roleManager.CreateAsync(
-                new IdentityRole<Guid>(Roles.User));
-
             var identityService =
-                serviceProvider
+                scope.ServiceProvider
                     .GetRequiredService<IIdentityService>();
 
-            var email = "test@test.com";
+            var email = "register-valid@test.com";
             var password = "Password123!";
 
             // Act
@@ -49,7 +42,13 @@ namespace MovieApp.IntegrationTests.Application
                 password,
                 CancellationToken.None);
 
+            result.IsSuccess.Should().BeTrue(
+    result.IsFailure
+        ? result.Error.ToString()
+        : "Register succeeded");
+
             // Assert
+
             result.IsSuccess.Should().BeTrue();
 
             var user = await context.Users
@@ -60,7 +59,7 @@ namespace MovieApp.IntegrationTests.Application
             user.UserName.Should().Be(email);
 
             var userManager =
-                serviceProvider
+                scope.ServiceProvider
                     .GetRequiredService<UserManager<ApplicationUser>>();
 
             var passwordValid =
@@ -81,22 +80,15 @@ namespace MovieApp.IntegrationTests.Application
         {
             // Arrange
 
-
-            var serviceProvider =
-                TestServiceProviderFactory.Create();
             using var scope =
-                serviceProvider.CreateScope();
-
-            var context =
-                scope.ServiceProvider
-                    .GetRequiredService<ApplicationDbContext>();
+                 factory.Services.CreateScope();
 
             var identityService =
-                serviceProvider
+                   scope.ServiceProvider
                     .GetRequiredService<IIdentityService>();
 
             var userManager =
-                serviceProvider
+                   scope.ServiceProvider
                     .GetRequiredService<UserManager<ApplicationUser>>();
 
             var email = "test@test.com";
@@ -126,29 +118,26 @@ namespace MovieApp.IntegrationTests.Application
         {
             // Arrange
 
-           
-            var serviceProvider =
-                TestServiceProviderFactory.Create();
             using var scope =
-                  serviceProvider.CreateScope();
+                   factory.Services.CreateScope();
 
             var context =
                 scope.ServiceProvider
                     .GetRequiredService<ApplicationDbContext>();
 
             var roleManager =
-                serviceProvider
+                   scope.ServiceProvider
                     .GetRequiredService<RoleManager<IdentityRole<Guid>>>();
 
             await roleManager.CreateAsync(
                 new IdentityRole<Guid>(Roles.User));
 
             var identityService =
-                serviceProvider
+                 scope.ServiceProvider
                     .GetRequiredService<IIdentityService>();
 
             var userManager =
-                serviceProvider
+                 scope.ServiceProvider
                     .GetRequiredService<UserManager<ApplicationUser>>();
 
             var email = "test@test.com";
@@ -182,18 +171,12 @@ namespace MovieApp.IntegrationTests.Application
         {
             // Arrange
 
-            var serviceProvider =
-                TestServiceProviderFactory.Create();
+            using var scope =
+                factory.Services.CreateScope();
 
-                using var scope =
-                  serviceProvider.CreateScope();
-
-            var context =
-                scope.ServiceProvider
-                    .GetRequiredService<ApplicationDbContext>();
-
+           
             var identityService =
-                serviceProvider
+              scope.ServiceProvider
                     .GetRequiredService<IIdentityService>();
 
             // Act
@@ -212,23 +195,20 @@ namespace MovieApp.IntegrationTests.Application
         public async Task LoginAsync_Should_ReturnFailure_When_Password_Is_Invalid()
         {
             // Arrange
-           
-            var serviceProvider =
-                TestServiceProviderFactory.Create();
 
             using var scope =
-                       serviceProvider.CreateScope();
+                     factory.Services.CreateScope();                
 
             var context =
                 scope.ServiceProvider
                     .GetRequiredService<ApplicationDbContext>();
 
             var identityService =
-                serviceProvider
+                   scope.ServiceProvider
                     .GetRequiredService<IIdentityService>();
 
             var userManager =
-                serviceProvider
+                   scope.ServiceProvider
                     .GetRequiredService<UserManager<ApplicationUser>>();
 
             var email = "test@test.com";
